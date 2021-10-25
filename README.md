@@ -5,8 +5,11 @@ Web app designed to store and manage online credentials.
 
 ## Tech Stack
 **Frontend**: HTML/CSS, JavaScript
+
 **Backend**: Python 3.7, Flask, Flask-Limiter, bcrypt, pycryptodome, ...(all libs are in *requirements.txt*)
+
 **Database**: PostgreSQL
+
 **Others**: Docker, NGINX
 
 
