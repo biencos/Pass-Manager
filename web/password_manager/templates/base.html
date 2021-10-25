@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="../static/css/base.css" />
+    <meta charset="utf-8">
+    <title>Password Manager</title>
+</head>
+
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='/images/logo.svg') }}" width = 50/>
+        <nav>
+            {% if not session['username'] %}
+            <li id="home_tab"><a href="{{ url_for('website.home') }}">Strona Główna</a></li>
+            <li id="login_tab"><a href="{{ url_for('website.login') }}">Zaloguj się</a></li>
+            <li id="signup_tab"><a href="{{ url_for('website.register') }}">Zarejestruj się</a></li>
+            <li id="reset_tab"><a href="{{ url_for('website.reset') }}">Zresetuj Hasło</a></li>
+            {% endif %} {% if session['username'] %}
+            <li id="dashboard_tab"><a href="{{ url_for('website.dashboard') }}">Moje Konto</a></li>
+            <li id="info_tab"><a href="{{ url_for('website.dashboard_more') }}">Twoje Informacje w Serwisach</a></li>
+            <li id="logout_tab"><a href="{{ url_for('website.logout') }}">Wyloguj się</a></li>
+            {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <div id="flash">
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <ul class="flash_messages">
+            {% for message in messages %}
+            <li>
+                <h3> {{ message }} </h3>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
+    </div>
+
+
+    <div id="container">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+
+<footer>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
+            href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+</footer>
+
+</html>

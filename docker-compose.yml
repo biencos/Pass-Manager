@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  web:
+    build: ./web
+    env_file: ./web/.env
+    expose:
+      - 8080
+    volumes:
+      - ./web:/home/web
+    depends_on:
+      - db
+
+  db:
+    image: postgres:10
+    env_file:
+      - database/.env
+    expose:
+      - 5432
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "443:443"
+    volumes: 
+     - ./nginx/data/certs:/etc/nginx/certs
